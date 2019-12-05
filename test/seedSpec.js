@@ -1,9 +1,6 @@
 const { expect } = require('chai');
 const mysql = require('mysql');
 
-
-
-
 beforeEach('Connect to the database', function() {
   db = mysql.createConnection({
     user: 'root',
@@ -16,8 +13,7 @@ beforeEach('Connect to the database', function() {
 
 })
 
-
-describe('Testing the test', function() {
+describe('Testing seed', function() {
 
   it('Expect 12 entries in "img" table', function(done) {
     var q = 'SELECT * FROM img';
@@ -33,19 +29,13 @@ describe('Testing the test', function() {
 
   })
   it('Expect 4 entries in "img" table with productId = "BES870XL"', function(done) {
-    var q = 'SELECT * FROM img WHERE productId=?';
-    db.query(q, ['BES870XL'], (results) => {
+    var q = 'SELECT * FROM img WHERE productId = ?';
+    db.query(q, ['BES870XL'], (err, results) => {
+      if (err) {
+        done(err)
+      }
       expect(results.length).to.equal(4)
+      done()
     })
-
   })
-
-
 })
-
-
-/*
-    'BES870XL',
-      'IVFWCT242DBWH',
-      'TOB-135N'
-*/
