@@ -9,7 +9,9 @@
   "scripts": {
     "test:seed": "mocha",
     "db:init": "node ./database/init.js",
-    "db:seed": "mysql -u root fec_images < ./database/fec_images.sql && node ./database/seed.js"
+    "db:seed": "mysql -u root fec_images < ./database/fec_images.sql && node ./database/seed.js",
+    "server": "nodemon server",
+    "build": "webpack -d --watch"
   },
   "repository": {
     "type": "git",
