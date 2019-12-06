@@ -16,14 +16,21 @@ export class App extends React.Component {
     this.state = {
       images: [],
       image: '',
+      width: 1600,
+      height: 1600,
       showModal: false
     }
     this.handleThumbnailClick = this.handleThumbnailClick.bind(this);
+    this.updateImageSize = this.updateImageSize.bind(this)
   }
 
   /* Once components are mounted,
      retrieve images from database */
   componentDidMount() {
+    this.fetchImages();
+  }
+
+  fetchImages() {
     const productIds = [
       'BES870XL',
       'IVFWCT242DBWH',
@@ -32,13 +39,22 @@ export class App extends React.Component {
     var random = Math.floor(Math.random() * productIds.length)
 
     var ID = productIds[random];
-    axios.get('/images' + ID)
+    axios.get('/images' + 'TOB-135N')
     .then(({ data }) => {
       this.setState({
         images: data,
         image: data[0]
       });
     });
+  }
+
+  updateImageSize(image) {
+    var img = new Image();
+    img.src = this.state.image;
+    var width = img.naturalWidth || 1600;
+    var height = img.naturalHeight || 1600;
+
+    this.setState({ width, height })
   }
 
   /* Handle thumbnail click inside carousell */
@@ -50,6 +66,7 @@ export class App extends React.Component {
     if(modal) {
       this.setState({showModal: true})
     }
+    this.updateImageSize();
   }
 
   render() {
@@ -66,7 +83,10 @@ export class App extends React.Component {
         <AppStyle>
           <MainImage
           image={this.state.image}
-          handleClick={() => this.setState({showModal: true})}/>
+          handleClick={() => this.setState({showModal: true})}
+          w={this.state.width}
+          h={this.state.height}
+          />
 
           <Carousell
             images={this.state.images}

@@ -1,5 +1,5 @@
 const express = require('express');
-const db = require('../db')
+const db = require('../database/db.js')
 const server = express();
 const port = process.env.PORT || 4444;
 const AWS = require('aws-sdk');

@@ -22,6 +22,7 @@ const fetchS3Bucket = (callback) => {
 }
 
 const seed = ({ Name, Contents }) => {
+  console.log('CONTENTS -----> ', Contents)
     Contents.forEach((image, i) => {
       let elements = image.Key.split('/');
       let imgKey = elements.pop();
@@ -55,6 +56,7 @@ fetchS3Bucket((err, data) => {
   if (err) {
     console.error(err)
   } else {
+    console.log(data)
     seed(data)
   }
 })
