@@ -51,8 +51,8 @@ export class App extends React.Component {
   updateImageSize(image) {
     var img = new Image();
     img.src = this.state.image;
-    var width = img.naturalWidth || 1600;
-    var height = img.naturalHeight || 1600;
+    var width = img.naturalWidth*1.2 || 1600;
+    var height = img.naturalHeight*1.2 || 1600;
 
     this.setState({ width, height })
   }
