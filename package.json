@@ -8,8 +8,8 @@
   },
   "scripts": {
     "test:seed": "mocha",
-    "db:init": "node ./database/init.js",
-    "db:seed": "mysql -u root fec_images < ./database/fec_images.sql && node ./database/seed.js",
+    "db:init": "mysql.server start && node ./database/init.js",
+    "db:seed": "mysql.server start && mysql -u root fec_images < ./database/fec_images.sql && node ./database/seed.js",
     "server": "nodemon server",
     "build": "webpack -d --watch"
   },
@@ -42,6 +42,8 @@
   "dependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-image-magnify": "^2.7.4",
+    "react-player": "^1.14.2",
     "styled-components": "^4.4.1"
   }
 }
