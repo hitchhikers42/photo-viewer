@@ -1,14 +1,14 @@
 const express = require('express');
 const db = require('../database/db.js')
 const server = express();
-const port = process.env.PORT || 4444;
+const port = process.env.PORT || 8080;
 const AWS = require('aws-sdk');
 
 /* Load AWS configuration */
-AWS.config.loadFromPath('./config/aws.json')
+AWS.config.loadFromPath('./config/aws.json');
 
 /* Create instance of AWS S3 */
-const s3 = new AWS.S3()
+const s3 = new AWS.S3();
 
 /* For Parsing */
 server.use(express.json());
