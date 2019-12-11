@@ -7,13 +7,7 @@ const cx = mysql.createConnection({
   database: 'fec_images'
 });
 
-cx.connect(err => {
-  if(err) {
-    console.error('ERROR CONNECTING TO DATABASE `FEC_IMAGES`')
-
-  } else {
-    console.log('Successfully connected to FEC_IMAGES')
-  }
-});
-
-module.exports = cx;
+module.exports = {
+  connect: () => { cx.connect(); return cx; },
+  end: () => cx.end()
+}
