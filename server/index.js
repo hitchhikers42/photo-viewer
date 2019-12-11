@@ -1,9 +1,10 @@
 const express = require('express');
-const db = require('../database/db.js')
+const database = require('../database/db.js')
 const server = express();
 const port = process.env.PORT || 8080;
 const AWS = require('aws-sdk');
 
+const db = database.connect();
 /* Load AWS configuration */
 AWS.config.loadFromPath('./config/aws.json');
 
@@ -44,7 +45,6 @@ server.get('/images:productId', (req, res) => {
     res.send(images);
   })
 })
-
 
 
 server.listen(port, () => {
