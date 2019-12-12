@@ -39,7 +39,7 @@ export class App extends React.Component {
     var random = Math.floor(Math.random() * productIds.length)
 
     var ID = productIds[random];
-    axios.get('/images' + ID)
+    axios.get('http://localhost:4444/images' + ID)
     .then(({ data }) => {
       this.setState({
         images: data,

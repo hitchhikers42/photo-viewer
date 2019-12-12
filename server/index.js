@@ -3,7 +3,7 @@ const database = require('../database/db.js')
 const server = express();
 const port = process.env.PORT || 4444;
 const AWS = require('aws-sdk');
-
+const cors = require('cors');
 const db = database.connect();
 /* Load AWS configuration */
 AWS.config.loadFromPath('./config/aws.json');
@@ -14,7 +14,7 @@ const s3 = new AWS.S3();
 /* For Parsing */
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
-
+server.use(cors());
 /* Render from compiled public directory */
 server.use(express.static(__dirname + '/../public'))
 
