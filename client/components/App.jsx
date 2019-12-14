@@ -34,23 +34,29 @@ export class App extends React.Component {
     const productIds = [
       'BES870XL',
       'IVFWCT242DBWH',
-      'TOB-135N'
+      'TOB-135N',
+      'XBOX1X'
+
     ]
     var random = Math.floor(Math.random() * productIds.length)
 
     var ID = productIds[random];
-    axios.get('http://localhost:4444/images' + ID)
+    axios.get('/images' + ID)
     .then(({ data }) => {
       this.setState({
         images: data,
         image: data[0]
       });
+      return data[0]
+    })
+    .then(data=> {
+      return this.updateImageSize(data)
     });
   }
 
   updateImageSize(image) {
     var img = new Image();
-    img.src = this.state.image;
+    img.src = image || this.state.image;
     var width = img.naturalWidth*1.2 || 1600;
     var height = img.naturalHeight*1.2 || 1600;
 
@@ -66,7 +72,7 @@ export class App extends React.Component {
     if(modal) {
       this.setState({showModal: true})
     }
-    this.updateImageSize();
+    this.updateImageSize(image);
   }
 
   render() {

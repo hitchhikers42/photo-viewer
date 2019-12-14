@@ -111,26 +111,26 @@ start(err => {
   } else {
     console.log('Successfully Started MYSQL')
     createDB(err => {
-      if(err) {
-        console.error(err)
-      } else {
-        console.log('Successfully Created Database fec_images')
-        importSchema(err => {
-          if(err) {
-            console.error(err)
-          } else {
-            console.log('Successfully Imported fec_images.sql')
-            fetchS3Bucket((err, data) => {
-              if (err) {
-                console.error(err)
-              } else {
-                console.log('Seeding data')
-                seed(data)
-              }
-            })
-          }
-        })
-      }
+      if(err) { console.error(err) }
+      else { console.log('Successfully Created Database fec_images') }
+      importSchema(err => {
+        if(err) {
+          console.error(err)
+        } else {
+          console.log('Successfully Imported fec_images.sql')
+          fetchS3Bucket((err, data) => {
+            if (err) {
+              console.error(err)
+            } else {
+              console.log('Seeding data')
+              seed(data)
+            }
+          })
+        }
+      })
+
     })
   }
 })
+
+

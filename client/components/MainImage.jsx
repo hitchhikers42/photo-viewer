@@ -8,7 +8,6 @@ export const MainImage = ({ handleClick, image, w, h })=> {
       <Wish data-tip='Add to Idea Board'>♡</Wish>
       <TooltipStyle style='font-size:24px' place="bottom" type="dark" effect="solid"/>
       <MainImageStyle onClick={handleClick}>
-
         <Magnify {...{
           smallImage: {
             isFluidWidth: true,
@@ -19,7 +18,6 @@ export const MainImage = ({ handleClick, image, w, h })=> {
             width: w,
             height: h
           },
-
           enlargedImagePosition: 'over'
       }}
       />

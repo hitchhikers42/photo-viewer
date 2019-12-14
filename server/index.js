@@ -4,19 +4,22 @@ const server = express();
 const port = process.env.PORT || 4444;
 const AWS = require('aws-sdk');
 const cors = require('cors');
+const favicon = require('serve-favicon')
 const db = database.connect();
+
+const path = require('path')
 /* Load AWS configuration */
 AWS.config.loadFromPath('./config/aws.json');
 
 /* Create instance of AWS S3 */
 const s3 = new AWS.S3();
-
+server.use(favicon(__dirname + '/../public/favicon.ico'))
 /* For Parsing */
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(cors());
 /* Render from compiled public directory */
-server.use(express.static(__dirname + '/../public'))
+server.use('/', express.static(__dirname + '/../public'))
 
 /* Incoming GET request to /images will return a signed URL
    for each image in AWS S3 bucket associated with the product ID.
@@ -42,10 +45,14 @@ server.get('/images:productId', (req, res) => {
       }
     });
     /* Send back array containing signed url's */
+
     res.send(images);
   })
 })
 
+// server.get('*', (req, res) => {
+//   res.redirect('/images')
+// })
 
 server.listen(port, () => {
   console.log(`

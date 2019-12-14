@@ -3,7 +3,10 @@ import ReactTooltip from 'react-tooltip';
 
 export const MainImageStyle = styled.div`
   display: flex;
+  align-items: center;
   width: 100%;
+  height: 500px;
+  margin-bottom: 10px;
 `
 
 export const Wish = styled.span`
