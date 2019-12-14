@@ -18,7 +18,10 @@ export const MainImage = ({ handleClick, image, w, h })=> {
             width: w,
             height: h
           },
-          enlargedImagePosition: 'over'
+          enlargedImagePosition: 'over',
+          isHintEnabled: true,
+          shouldHideHintAfterFirstActivation: false
+
       }}
       />
       </MainImageStyle>

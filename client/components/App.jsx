@@ -16,8 +16,8 @@ export class App extends React.Component {
     this.state = {
       images: [],
       image: '',
-      width: 1600,
-      height: 1600,
+      width: 1200,
+      height: 1200,
       showModal: false
     }
     this.handleThumbnailClick = this.handleThumbnailClick.bind(this);
@@ -57,8 +57,8 @@ export class App extends React.Component {
   updateImageSize(image) {
     var img = new Image();
     img.src = image || this.state.image;
-    var width = img.naturalWidth*1.2 || 1600;
-    var height = img.naturalHeight*1.2 || 1600;
+    var width = img.naturalWidth || 1200;
+    var height = img.naturalHeight || 1200;
 
     this.setState({ width, height })
   }
