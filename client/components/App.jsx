@@ -3,11 +3,31 @@ import axios from 'axios';
 
 /* import styles */
 import { AppStyle } from './styles/AppStyle.jsx'
-
+import { ModalClose, ImageStyle } from './styles/ModalStyle.jsx';
 /* import components */
 import { MainImage } from './MainImage.jsx';
 import { Carousell } from './Carousell.jsx'
-import { ImageModal } from './ImageModal.jsx';
+
+
+import Modal from 'react-modal';
+Modal.setAppElement('#app')
+
+const modalStyle = {
+  content : {
+    width: '80%',
+    height: '80%',
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)'
+  },
+  overlay: {
+    zIndex: '2',
+    backgroundColor: 'rgba(119, 119, 119, 0.5)'
+  }
+};
 
 
 export class App extends React.Component {
@@ -18,10 +38,14 @@ export class App extends React.Component {
       image: '',
       width: 1200,
       height: 1200,
-      showModal: false
+      modalIsOpen: false
+
     }
     this.handleThumbnailClick = this.handleThumbnailClick.bind(this);
     this.updateImageSize = this.updateImageSize.bind(this)
+
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   /* Once components are mounted,
@@ -63,41 +87,58 @@ export class App extends React.Component {
     this.setState({ width, height })
   }
 
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
+
   /* Handle thumbnail click inside carousell */
   handleThumbnailClick(id, modal=false) {
     var image = this.state.images[id];
     this.setState({
       image
     })
-    if(modal) {
-      this.setState({showModal: true})
-    }
     this.updateImageSize(image);
   }
 
   render() {
     return (
       <div>
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={modalStyle}
+        >
+          <ModalClose
+            onClick={this.closeModal}> ⤬ </ModalClose>
+          <ImageStyle
+            src={this.state.image}
+          />
 
-        <ImageModal
-        visible={this.state.showModal}
-        image={this.state.image}
-        images={this.state.images}
-        handleClick={this.handleThumbnailClick}
-        hideModal={() => this.setState({showModal: false})} />
+          <Carousell
+            images={this.state.images}
+            handleClick={this.handleThumbnailClick}
+            showModal={true}
+          />
+        </Modal>
 
-        <AppStyle>
+        <AppStyle style={ this.state.modalIsOpen ? { display: 'none' } : { display: ''}}>
           <MainImage
-          image={this.state.image}
-          handleClick={() => this.setState({showModal: true})}
-          w={this.state.width}
-          h={this.state.height}
+            image={this.state.image}
+            handleClick={this.openModal}
+            w={this.state.width}
+            h={this.state.height}
           />
 
           <Carousell
             images={this.state.images}
             selected={this.state.image}
-            handleClick={this.handleThumbnailClick} />
+            handleClick={this.handleThumbnailClick}
+          />
 
         </AppStyle>
       </div>

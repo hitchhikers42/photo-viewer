@@ -1,15 +1,24 @@
 import styled from 'styled-components';
 
-export const ModalStyle = styled.div`
 
-position: fixed;
-overflow: auto;
-z-index: 2;
-left: 0;
-top: 0;
-width: 100%;
-height: 100%;
-background-color: rgba(130, 130, 130, 0.5);
+export const ModalClose = styled.button`
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  font-size: 1.5em;
+  border: none;
+  font-weight: bold;
+  :hover {
+    color: red;
+    text-shadow: 0 0 2px black;
+  };
+  :active {
+    outline: none;
+    text-shadow: 0 0 5px black;
+  };
+  :focus {
+    outline: none;
+  }
 `
 export const ImageStyle = styled.img`
 z-index: 3;
