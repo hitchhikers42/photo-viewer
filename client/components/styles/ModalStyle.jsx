@@ -10,6 +10,7 @@ export const ModalClose = styled.button`
   font-weight: bold;
   :hover {
     color: red;
+    cursor: url('https://professionalmorondotcom.files.wordpress.com/2018/11/blob.png?w=24') 12 12, auto;
     text-shadow: 0 0 2px black;
   };
   :active {
