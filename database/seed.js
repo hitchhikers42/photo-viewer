@@ -77,6 +77,7 @@ const importSchema = (callback) => {
   })
 }
 
+
 /* Create database if not already initially created */
 const createDB = (callback) => {
   const cx = mysql.createConnection({
