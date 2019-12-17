@@ -10,7 +10,7 @@ import { Carousell } from './Carousell.jsx'
 
 
 import Modal from 'react-modal';
-Modal.setAppElement('#app1')
+Modal.setAppElement('#photo-viewer')
 
 const modalStyle = {
   content : {

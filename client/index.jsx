@@ -2,4 +2,4 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PhotoViewer from './components/App.jsx';
 
-ReactDOM.render(<PhotoViewer/>, document.getElementById('app1'));
+ReactDOM.render(<PhotoViewer/>, document.getElementById('photo-viewer'));
