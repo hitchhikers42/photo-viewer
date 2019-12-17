@@ -10,7 +10,7 @@ import { Carousell } from './Carousell.jsx'
 
 
 import Modal from 'react-modal';
-Modal.setAppElement('#app')
+Modal.setAppElement('#app1')
 
 const modalStyle = {
   content : {
@@ -30,7 +30,7 @@ const modalStyle = {
 };
 
 
-export class App extends React.Component {
+class PhotoViewer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -146,3 +146,4 @@ export class App extends React.Component {
   }
 
 }
+export default PhotoViewer;
